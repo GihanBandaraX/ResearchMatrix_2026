@@ -1,11 +1,12 @@
-//src/app/page.tsx
-//HOME PAGE FOR RESEARCHMATRIX AI
+// src/app/page.tsx
+// HOME PAGE FOR RESEARCHMATRIX AI
 
 'use client';
 
 import { useSession, signIn, signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
+import Link from "next/link";
 
 export default function Home() {
   const { data: session, status } = useSession();
@@ -83,14 +84,14 @@ export default function Home() {
             {session ? (
               <button
                 onClick={() => router.push('/dashboard')}
-                className="px-5 py-2.5 bg-gradient-to-r from-indigo-600 to-cyan-500 hover:from-indigo-500 hover:to-cyan-400 text-white font-semibold rounded-xl shadow-lg shadow-indigo-500/25 transition-all transform hover:scale-105 text-sm"
+                className="px-5 py-2.5 bg-gradient-to-r from-indigo-600 to-cyan-500 hover:from-indigo-500 hover:to-cyan-400 text-white font-semibold rounded-xl shadow-lg shadow-indigo-500/25 transition-all transform hover:scale-105 text-sm cursor-pointer"
               >
                 Dashboard →
               </button>
             ) : (
               <button
                 onClick={() => signIn('google')}
-                className={`px-5 py-2.5 font-semibold rounded-xl border transition-all shadow-md text-sm flex items-center gap-2 ${darkMode ? 'bg-slate-900 hover:bg-slate-800 text-slate-200 border-slate-700/80' : 'bg-white hover:bg-slate-50 text-slate-800 border-slate-300'}`}
+                className={`px-5 py-2.5 font-semibold rounded-xl border transition-all shadow-md text-sm flex items-center gap-2 cursor-pointer ${darkMode ? 'bg-slate-900 hover:bg-slate-800 text-slate-200 border-slate-700/80' : 'bg-white hover:bg-slate-50 text-slate-800 border-slate-300'}`}
               >
                 <span>Sign In</span>
               </button>
@@ -125,13 +126,13 @@ export default function Home() {
               <div className="flex gap-3 w-full">
                 <button
                   onClick={() => router.push('/dashboard')}
-                  className="flex-1 py-3 px-4 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold rounded-xl transition-all shadow-lg shadow-indigo-600/30 text-sm"
+                  className="flex-1 py-3 px-4 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold rounded-xl transition-all shadow-lg shadow-indigo-600/30 text-sm cursor-pointer"
                 >
                   Open Dashboard
                 </button>
                 <button
                   onClick={() => signOut()}
-                  className={`py-3 px-4 font-semibold rounded-xl transition-all text-sm border ${darkMode ? 'bg-slate-800 hover:bg-slate-700 text-slate-300 border-slate-700' : 'bg-slate-100 hover:bg-slate-200 text-slate-700 border-slate-300'}`}
+                  className={`py-3 px-4 font-semibold rounded-xl transition-all text-sm border cursor-pointer ${darkMode ? 'bg-slate-800 hover:bg-slate-700 text-slate-300 border-slate-700' : 'bg-slate-100 hover:bg-slate-200 text-slate-700 border-slate-300'}`}
                 >
                   Sign Out
                 </button>
@@ -140,7 +141,7 @@ export default function Home() {
           ) : (
             <button
               onClick={() => signIn('google')}
-              className={`w-full flex items-center justify-center gap-3 px-8 py-4 font-bold rounded-2xl shadow-2xl transition-all transform hover:scale-[1.02] active:scale-95 border ${darkMode ? 'bg-white hover:bg-slate-100 text-slate-950 border-white' : 'bg-slate-900 hover:bg-slate-800 text-white border-slate-900'}`}
+              className={`w-full flex items-center justify-center gap-3 px-8 py-4 font-bold rounded-2xl shadow-2xl transition-all transform hover:scale-[1.02] active:scale-95 border cursor-pointer ${darkMode ? 'bg-white hover:bg-slate-100 text-slate-950 border-white' : 'bg-slate-900 hover:bg-slate-800 text-white border-slate-900'}`}
             >
               <svg className="w-5 h-5" viewBox="0 0 24 24">
                 <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.66-5.17 3.66-9.17z"/>
@@ -311,7 +312,7 @@ export default function Home() {
       {showScrollTop && (
         <button
           onClick={scrollToTop}
-          className="fixed bottom-8 right-8 z-50 p-4 rounded-2xl bg-indigo-600 hover:bg-indigo-500 text-white shadow-2xl shadow-indigo-600/50 transition-all transform hover:scale-110 active:scale-95 flex items-center justify-center"
+          className="fixed bottom-8 right-8 z-50 p-4 rounded-2xl bg-indigo-600 hover:bg-indigo-500 text-white shadow-2xl shadow-indigo-600/50 transition-all transform hover:scale-110 active:scale-95 flex items-center justify-center cursor-pointer"
           title="Scroll to Top"
         >
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -330,10 +331,10 @@ export default function Home() {
             <span className={`font-semibold ${darkMode ? 'text-slate-300' : 'text-slate-800'}`}>ResearchMatrix AI</span>
           </div>
           <p>© {new Date().getFullYear()} ResearchMatrix AI Hub. All rights reserved.</p>
-          <div className="flex space-x-6 text-xs">
-            <span className="hover:text-cyan-400 cursor-pointer">Privacy Policy</span>
-            <span className="hover:text-cyan-400 cursor-pointer">Terms of Service</span>
-            <span className="hover:text-cyan-400 cursor-pointer">API Documentation</span>
+          <div className="flex space-x-6 text-xs font-semibold">
+            <Link href="/privacy" className="hover:text-cyan-400 transition-colors">Privacy Policy</Link>
+            <Link href="/terms" className="hover:text-cyan-400 transition-colors">Terms of Service</Link>
+            <Link href="/docs/api" className="hover:text-cyan-400 transition-colors">API Documentation</Link>
           </div>
         </div>
       </footer>

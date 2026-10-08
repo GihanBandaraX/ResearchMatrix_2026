@@ -1,3 +1,5 @@
+// src/app/api/papers/upload/route.ts
+
 import { NextResponse } from 'next/server';
 import dbConnect from '../../../../lib/mongodb';
 import Paper from '../../../../models/Paper';
@@ -23,7 +25,7 @@ function calculateTextSimilarity(text1: string, text2: string): number {
     if (set2.has(word)) intersection++;
   });
   
-  const union = new Set([...set1, [...set2]]).size;
+  const union = new Set([...set1, ...set2]).size;
   if (union === 0) return 0;
   
   // Return similarity percentage
@@ -72,8 +74,14 @@ export async function POST(req: Request) {
     let result = null;
     let lastError = null;
 
+    // Updated prompt with anti-recitation synthesis instructions while preserving all factual content
     const prompt = `
-      You are an expert academic research assistant. Extract and analyze the following research paper text and return a valid JSON object (and ONLY a valid JSON object, no markdown formatting like \`\`\`json, just raw JSON) containing these exact keys:
+      You are an expert academic research assistant. Analyze the following research paper text and extract its core structured details.
+      
+      IMPORTANT INSTRUCTION TO PREVENT RECITATION BLOCKS:
+      Summarize and synthesize the abstract, methodology, results, and other descriptive fields using your own original academic phrasing. Do not copy sentences verbatim from the source text to prevent copyright recitation filters, but ensure all factual metrics, findings, authors, and technical details remain completely accurate and faithful to the paper.
+
+      Return a valid JSON object (and ONLY a valid JSON object, no markdown formatting like \`\`\`json, just raw JSON) containing these exact keys:
       - title (string)
       - authors (array of strings)
       - publishedYear (string)
@@ -106,7 +114,7 @@ export async function POST(req: Request) {
     }
 
     if (!result) {
-      throw new globalThis.Error(`All Gemini fallback models failed. Last error: ${lastError?.message || 'Unknown error'}`);
+      throw new Error(`All Gemini fallback models failed. Last error: ${lastError?.message || 'Unknown error'}`);
     }
 
     const responseText = result.response.text();
@@ -124,7 +132,6 @@ export async function POST(req: Request) {
       }
     });
 
-    // If it's the exact same paper being re-uploaded, it might show high similarity; otherwise it's compared.
     const plagiarismScore = `${highestSimilarity}%`;
     const aiProbability = `${Math.min(highestSimilarity + 2, 95)}%`; // Relative estimate based on internal text patterns
 
