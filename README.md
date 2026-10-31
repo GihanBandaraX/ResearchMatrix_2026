@@ -1,9 +1,9 @@
 # ResearchMatrix AI (AI-Powered Academic Literature & Thesis Synthesis Hub) 🔬
 
 **Developer:** GihanBandaraX  
-**Timeline:** September 25, 2026  
+**Timeline:** September 25, 2026 - October 31, 2026
+
 **Repository:** [ResearchMatrix_2026](https://github.com/GihanBandaraX/ResearchMatrix_2026)  
-🚀 **Live Demo:** [View Live App](#)
 
 ResearchMatrix AI is an advanced, deep-tech academic literature and thesis synthesis platform designed for researchers, academics, and graduate students (MSc) to manage, compare, and synthesize research papers using modern web technologies. It bridges the gap between basic document storage and intelligent research automation.
 
