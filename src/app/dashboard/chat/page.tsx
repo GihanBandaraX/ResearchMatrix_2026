@@ -7,10 +7,9 @@ import { Send, Bot, User, FileText, Loader2 } from 'lucide-react';
 
 interface Message {
   role: 'user' | 'assistant';
-  content: string;const model = genAI.getGenerativeModel
+  content: string;
   sources?: { title: string; page: number }[];
 }
-
 const Send = (props: React.SVGProps<SVGSVGElement>) => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" {...props}>
     <path d="m22 2-7 20-4-9-9-4Z" />
