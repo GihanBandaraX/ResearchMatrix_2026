@@ -26,7 +26,7 @@ export default function Dashboard() {
   const [copiedTab, setCopiedTab] = useState<string | null>(null);
   const [editingTitleId, setEditingTitleId] = useState<string | null>(null);
   const [newTitle, setNewTitle] = useState('');
-}
+
   
   // Multi-Paper Comparison States
   const [selectedPaperIds, setSelectedPaperIds] = useState<string[]>([]);
