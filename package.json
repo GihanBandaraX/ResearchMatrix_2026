@@ -9,6 +9,7 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@google/genai": "^2.29.1",
     "@google/generative-ai": "^0.24.1",
     "lucide-react": "^1.52.0",
     "mongoose": "^9.10.2",

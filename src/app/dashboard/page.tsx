@@ -17,7 +17,7 @@ interface ChatMessage {
 export default function Dashboard() {
   const { data: session, status } = useSession();
   const [files, setFiles] = useState<File[]>([]); // Multi-file upload state
-  const [selectedModel, setSelectedModel] = useState('gemini-3.8-flash');
+  const [selectedModel, setSelectedModel] = useState('gemini-3.8-flash'); // default model
   const [loading, setLoading] = useState(false);
   const [statusMessage, setStatusMessage] = useState('');
   const [papers, setPapers] = useState<any[]>([]);
@@ -26,6 +26,7 @@ export default function Dashboard() {
   const [copiedTab, setCopiedTab] = useState<string | null>(null);
   const [editingTitleId, setEditingTitleId] = useState<string | null>(null);
   const [newTitle, setNewTitle] = useState('');
+}
   
   // Multi-Paper Comparison States
   const [selectedPaperIds, setSelectedPaperIds] = useState<string[]>([]);

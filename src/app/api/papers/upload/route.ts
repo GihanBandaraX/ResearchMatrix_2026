@@ -62,6 +62,7 @@ export async function POST(req: Request) {
 
     // 2. Multi-Model Fallback setup
     const defaultModels = [
+      
       'gemini-3.8-flash',
       'gemini-3.7-flash',
       'gemini-3.6-flash',
